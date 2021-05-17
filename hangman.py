@@ -1,11 +1,6 @@
 import string
 from words import choose_word
 from images import IMAGES
-'''
-Important instruction
-* function and variable name snake_case -> is_prime
-* contant variable upper case PI
-'''
 
 def is_word_guessed(secret_word, letters_guessed):
     if secret_word==letters_guessed:
