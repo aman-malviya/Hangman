@@ -13,7 +13,6 @@ def choose_word():
     word_list = load_words()
     secret_word = random.choice(word_list)
     secret_word = secret_word.lower()
-    print(secret_word);
     return secret_word
 
 choose_word()

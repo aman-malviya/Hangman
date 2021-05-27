@@ -1,11 +1,13 @@
+from os import truncate
 import string
 from words import choose_word
 from images import IMAGES
 
 def is_word_guessed(secret_word, letters_guessed):
-    if secret_word==letters_guessed:
-        return True
-    return False
+    for letter in secret_word:
+        if not letter in letters_guessed:
+            return False
+    return True
 
 
 
@@ -62,8 +64,9 @@ def hangman(secret_word):
             letters_guessed.append(letter)
             print("Good guess: {} ".format(
                 get_guessed_word(secret_word, letters_guessed)))
-            if is_word_guessed(secret_word, letters_guessed) == True:
+            if is_word_guessed(secret_word, letters_guessed):
                 print(" * * Congratulations, you won! * * ", end='\n\n')
+                break
         else:
             print("Oops! That letter is not in my word: {} ".format(
                 get_guessed_word(secret_word, letters_guessed)))
@@ -71,7 +74,9 @@ def hangman(secret_word):
             no_of_wrong_inputs+=1
             print_image(no_of_wrong_inputs)
             letters_guessed.append(letter)
-            print("")
+
+    if remaining_lives == 0:
+        print("You lost!!!!", end="\n\n")
 
 
 secret_word = choose_word()
